@@ -64,22 +64,7 @@ design.addEventListener('change', (e) => {
 
 
 
-// let activities = document.querySelectorAll('#activities')
-let activitiesCheckboxes = document.querySelectorAll('.activities input'); // node list
-let totalParagraph = document.querySelector('#activities-cost'); // paragraph elemment
 
-activities.addEventListener('change', (e) =>{
-    let total = 0;
-    for(let i=0; i < activitiesCheckboxes.length; i++) {
-        if(activitiesCheckboxes[i].checked == true) {
-        total += parseInt(activitiesCheckboxes[i].getAttribute('data-cost'));
-        }
-        // activitiesCheckboxes[i].checked = true;
-
-        // activitiesCheckboxes[i].setAttribute('checked', 'yes');
-    }
-    totalParagraph.innerHTML = `<p id="activities-cost" class="activities-cost">Total: $${total}</p>`
-})
 
 let paymentInfo = document.querySelector('#payment');
 let paymentMethods = document.querySelector('.payment-methods')
