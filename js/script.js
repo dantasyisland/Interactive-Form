@@ -15,7 +15,7 @@ jobRole.addEventListener('change', (e) => {
         otherJobRole.style.display = 'none';
         console.log('df')
     }
-    console.log(`You like ${e.target.value}`);
+
 });
 
 
@@ -40,12 +40,12 @@ design.addEventListener('change', (e) => {
     color.disabled = false;
     if (e.target.value === 'js puns') {
         for (let i = 0; i < color.options.length; i++) {
-            console.log();
+
             color.options[i].disabled = false;
             if (color.options[i].dataset.theme !== "js puns") {
                 color.options[i].disabled = true;
                 color.options[1].selected = true;
-                console.log(color.options[i]);
+
             }
         }
     }
@@ -55,7 +55,7 @@ design.addEventListener('change', (e) => {
             if (color.options[i].dataset.theme !== "heart js") {
                 color.options[i].disabled = true;
                 color.options[4].selected = true;
-                console.log(color.options[i]);
+
             }
         }
 
@@ -82,16 +82,28 @@ activities.addEventListener('change', (e) =>{
 })
 
 let paymentInfo = document.querySelector('#payment');
-let creditCard = document.querySelector('.credit-card')
-let paypal = document.querySelector('.paypal')
-let bitcoin = document.querySelector('.bitcoin')
+let paymentMethods = document.querySelector('.payment-methods')
+let creditCard = document.querySelector('#credit-card')
+let paypal = document.querySelector('#paypal')
+let bitcoin = document.querySelector('#bitcoin')
+
+
+
+
+paymentInfo.options[1].selected = true;
 
 //if option-value for select == classname
 //e.target = select
+// children expect value hidden
 paymentInfo.addEventListener('change', (e) =>{
-    console.log('change');
-    console.log(e.target.className);
-    console.log(e.target.options);
+
+    console.log(e.target.value);
+    for(let i = 0; i< paymentInfo.length; i++) {
+        console.log(paymentInfo[i]);
+        if (e.target.value != paymentInfo[i].value) {
+        }
+    }
+
 
 })
 
