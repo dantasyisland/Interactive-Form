@@ -21,7 +21,6 @@ jobRole.addEventListener('change', (e) => {
         otherJobRole.style.display = '';
     } else {
         otherJobRole.style.display = 'none';
-        console.log('df')
     }
 
 });
@@ -74,54 +73,37 @@ tShirtDesign.addEventListener('change', (e) => {
 
 
 //ACTIVITES fieldset
-const activitiesBox = document.getElementById('activities-box');
+// const activitiesBox = document.getElementById('activities-box');
 
 
 // const checkboxes = activitiesBox.children; // HTML collection of labels - input type checkbox
 
 // let activities = document.querySelectorAll('#activities')
+
+
 let activitiesCheckboxes = document.querySelectorAll('.activities input'); // node list input type check box
 let totalParagraph = document.querySelector('#activities-cost'); // paragraph elemment
 
 activities.addEventListener('change', (e) =>{
     let total = 0;
+
     for(let i=0; i < activitiesCheckboxes.length; i++) {
         if(activitiesCheckboxes[i].checked == true) {
-        total += parseInt(activitiesCheckboxes[i].getAttribute('data-cost'));
-        }
-        // activitiesCheckboxes[i].checked = true;
-
-        // activitiesCheckboxes[i].setAttribute('checked', 'yes');
-
-// HALF WORKS
-        if(e.target.getAttribute('data-day-and-time') === activitiesCheckboxes[i].getAttribute('data-day-and-time')) {
-            console.log(e.target.getAttribute('data-day-and-time'));
-            activitiesCheckboxes[i].disabled = true;
-            e.target.disabled = false;
-        }
-
-
+            total += parseInt(activitiesCheckboxes[i].getAttribute('data-cost'));
     }
-    // DISABLE
-
-
-
-
-
-
-
-
-
+    if((e.target.checked === true) && (e.target.getAttribute('data-day-and-time') === activitiesCheckboxes[i].getAttribute('data-day-and-time'))) {
+        activitiesCheckboxes[i].disabled = true;
+        e.target.disabled = false;
+    } else if ((e.target.checked === false) && (e.target.getAttribute('data-day-and-time') === activitiesCheckboxes[i].getAttribute('data-day-and-time'))) {
+        activitiesCheckboxes[i].disabled = false;
+        e.target.disabled = false;
+    }
+}
 
     totalParagraph.innerHTML = `<p id="activities-cost" class="activities-cost">Total: $${total}</p>`
 })
 
 
-// BLOCK OUT - each time on click
-
-function checkbox() {
-
-}
 
 // Payment Info
 const paymentOptions = document.querySelectorAll('#payment option'); // values - select method hidden
@@ -145,9 +127,43 @@ const paypal = document.querySelector('#paypal');
 const bitcoin = document.querySelector('#bitcoin');
 
 
+
 const registerButton = document.querySelector('button[type="submit"]')
 
 
 paypal.style.display = "none";
 bitcoin.style.display = "none";
-creditCard.style.display = "none";
+
+paymentOptions[1].selected = true;
+const paymentInfo = document.querySelector('#payment');
+
+//if option-value for select == classname
+//e.target = select
+// children expect value hidden
+paymentInfo.addEventListener('change', (e) =>{
+
+    // let x = document.querySelector(`#${e.target.value}`);
+    // x.style.display = "block";
+    for(let i = 0; i< paymentInfo.length; i++) {
+        if (paymentInfo[i].selected === true) {
+            if (paymentInfo[i].value === 'paypal') {
+                paypal.style.display = "block"
+                creditCard.style.display = "none";
+                bitcoin.style.display = "none";
+            } else if (paymentInfo[i].value === 'bitcoin') {
+                bitcoin.style.display = "block";
+                paypal.style.display = "none"
+                creditCard.style.display = "none";
+            } else if (paymentInfo[i].value === 'credit-card') {
+                creditCard.style.display = "block";
+                bitcoin.style.display = "none";
+                paypal.style.display = "none"
+            }
+
+        }
+    }
+
+
+
+
+})
