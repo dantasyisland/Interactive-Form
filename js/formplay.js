@@ -1,16 +1,16 @@
 // Variables for the entire form
-
+const form = document.querySelector('form')
 
 //BASIC INFO fieldset
 
-const nameField = document.getElementById('name'); // input
+const name = document.getElementById('name'); // input
 const email = document.getElementById('email'); // input
 const jobRole = document.getElementById('title'); // select - 1st option has hidden attribute - last option is Other - options have values
 const otherJobRole = document.getElementById('other-job-role'); // input - other job role
 
 
 //Adds focus to name field on form
-nameField.focus();
+name.focus();
 
 
 // Displays other job role input box if other job role is selected
@@ -83,7 +83,7 @@ tShirtDesign.addEventListener('change', (e) => {
 
 let activitiesCheckboxes = document.querySelectorAll('.activities input'); // node list input type check box
 let totalParagraph = document.querySelector('#activities-cost'); // paragraph elemment
-
+let activities = document.querySelector('#activities');
 activities.addEventListener('change', (e) =>{
     let total = 0;
 
