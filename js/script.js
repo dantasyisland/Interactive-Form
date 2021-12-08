@@ -169,14 +169,20 @@ function Invalid(element) {
 function isNameValid (name) {
     const nameIsValid = /^[a-z ,.'-]+$/i.test(name.value);
     if(nameIsValid === true) Valid(name);
-    else Invalid(name)
+    else Invalid(name);
 }
 function isEmailValid (email) {
     const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
     if(emailIsValid === true) Valid(email);
-    else Invalid(email)
+    else Invalid(email);
 }
-function isActiviesValid (activitiesCheckboxes) {
+function isActiviesValid (checkboxes) {
+    for(let i=0; i < checkboxes.length; i++) {
+        if(checkboxes[i].selected === true) Valid(checkboxes);
+        else Invalid(checkboxes);
+    }
+
+
 
 }
 function isCreditCardNumValid () {
@@ -194,5 +200,9 @@ form.addEventListener('keyup', e => {
 //     if (!languageValidator()) e.preventDefault();
 
    });
+
+form.addEventListener('change', e => {
+        isActiviesValid(activitiesCheckboxes);
+});
 
 
