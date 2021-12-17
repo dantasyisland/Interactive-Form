@@ -60,7 +60,7 @@ tShirtDesign.addEventListener('change', (e) => {
 // ACTIVTIES
 
 let activitiesCost = document.querySelector('#activities-cost'); // paragraph elemment
-let activities = document.querySelector('#activities');
+let activities = document.querySelector('#activities-box');
 let activitiesCheckboxes = document.querySelectorAll('.activities input'); // node list input type check box
 let total = 0; // outside for validation
 
@@ -152,14 +152,14 @@ paymentInfo.addEventListener('change', (e) =>{
 const email = document.getElementById('email'); // input
 
 function valid(element) {
-    element.parentElement.classList.add('valid');
     element.parentElement.classList.remove('not-valid');
+    element.parentElement.classList.add('valid');
     element.parentElement.lastElementChild.style.display = 'none';
 }
 
 function invalid(element) {
-    element.parentElement.classList.add('not-valid');
     element.parentElement.classList.remove('valid');
+    element.parentElement.classList.add('not-valid');
     element.parentElement.lastElementChild.style.display = 'inline';
 }
 
@@ -182,10 +182,11 @@ function isEmailvalid (email) {
 function isActivitiesvalid (activities) {
     if (total>0) {
 
+        valid(activities);
 
     }
     else {
-
+        invalid(activities);
     }
 
 }
