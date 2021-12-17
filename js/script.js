@@ -146,19 +146,18 @@ paymentInfo.addEventListener('change', (e) =>{
     }
 })
 
-
 //VALIDATORS
 
 
 const email = document.getElementById('email'); // input
 
-function Valid(element) {
+function valid(element) {
     element.parentElement.classList.add('valid');
     element.parentElement.classList.remove('not-valid');
     element.parentElement.lastElementChild.style.display = 'none';
 }
 
-function Invalid(element) {
+function invalid(element) {
     element.parentElement.classList.add('not-valid');
     element.parentElement.classList.remove('valid');
     element.parentElement.lastElementChild.style.display = 'inline';
@@ -166,26 +165,34 @@ function Invalid(element) {
 
 
 
-function isNameValid (name) {
-    const nameIsValid = /^[a-z ,.'-]+$/i.test(name.value);
-    if(nameIsValid === true) Valid(name);
-    else Invalid(name);
+function isNamevalid (name) {
+    const nameIsvalid = /^[a-z ,.'-]+$/i.test(name.value);
+    if(nameIsvalid === true) valid(name);
+    else invalid(name);
 }
-function isEmailValid (email) {
-    const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
-    if(emailIsValid === true) Valid(email);
-    else Invalid(email);
+function isEmailvalid (email) {
+    const emailIsvalid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
+    if(emailIsvalid === true) valid(email);
+    else invalid(email);
 }
-function isActiviesValid (checkboxes) {
-    for(let i=0; i < checkboxes.length; i++) {
-        if(checkboxes[i].selected === true) Valid(checkboxes);
-        else Invalid(checkboxes);
+
+
+// NEW CODE
+
+function isActivitiesvalid (activities) {
+    if (total>0) {
+
+
+    }
+    else {
+
     }
 
-
-
 }
-function isCreditCardNumValid () {
+
+// END OF NEW CODE
+
+function isCreditCardNumvalid () {
     const nameReg = /^[a-z ,.'-]+$/i;
     return nameReg.test(name);
 }
@@ -194,15 +201,18 @@ function isCreditCardNumValid () {
 
 form.addEventListener('keyup', e => {
         e.preventDefault(); // REMOVE
-        isNameValid(name);
-        isEmailValid(email);
-//      if (!emailValidator())  e.preventDefault();
-//     if (!languageValidator()) e.preventDefault();
+        isNamevalid(name);
+        isEmailvalid(email);
+        isActivitiesvalid(activities);
+//      if (!emailvalidator())  e.preventDefault();
+//     if (!languagevalidator()) e.preventDefault();
 
    });
 
 form.addEventListener('change', e => {
-        isActiviesValid(activitiesCheckboxes);
+        isActivitiesvalid(activitiesCheckboxes);
 });
 
-
+form.addEventListener('submit', e => {
+    e.preventDefault();
+})
