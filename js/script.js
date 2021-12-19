@@ -193,10 +193,18 @@ function isActivitiesvalid (activities) {
 
 // END OF NEW CODE
 
-function isCreditCardNumvalid () {
-    const nameReg = /^[a-z ,.'-]+$/i;
-    return nameReg.test(name);
+function isCreditCardNumValid () {
+// creditCardNumber
 }
+
+function isCreditCardZipValid () {
+// creditCardZip
+}
+
+function isCvvValid() {
+// cvv
+}
+
 
 
 
