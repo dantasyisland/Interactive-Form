@@ -8,12 +8,16 @@ This following code will validate a registration form for a fictional Full Stack
 const form = document.querySelector('form');
 const registerButton = document.querySelector('button[type="submit"]')
 
+/**
+ *
+ */
 
-// NAME
 let name = document.getElementById('name');
 name.focus();
 
-
+/**
+ *
+ */
 // JOB ROLE
 const jobRole = document.getElementById('title'); // select - 1st option has hidden attribute - last option is Other - options have values
 const otherJobRole = document.getElementById('other-job-role'); // input - other job role
@@ -30,6 +34,9 @@ jobRole.addEventListener('change', (e) => {
 
 });
 
+/**
+ *
+ */
 // T SHIRT
 //SHIRTS fieldset
 const tShirtDesign = document.getElementById('design'); // select - options have values
@@ -63,7 +70,9 @@ tShirtDesign.addEventListener('change', (e) => {
 })
 
 
-
+/**
+ *
+ */
 // ACTIVTIES
 
 let activitiesCost = document.querySelector('#activities-cost'); // paragraph elemment
@@ -94,7 +103,9 @@ activities.addEventListener('change', (e) =>{
 })
 
 
-
+/**
+ *
+ */
 // PAYMENT
 
 
@@ -153,6 +164,25 @@ paymentInfo.addEventListener('change', (e) =>{
     }
 })
 
+
+/**
+ *
+ */
+// Will add a focus class to a checkbox that is in focus - CSS properties change drawing attention to element
+
+for (let i =0; i< activitiesCheckboxes.length; i++) {
+    activitiesCheckboxes[i].addEventListener('focus', (e)=>{
+        e.target.parentElement.classList.add("focus")
+    });
+    activitiesCheckboxes[i].addEventListener('blur', (e)=>{
+        e.target.parentElement.classList.remove("focus");
+    });
+}
+
+
+/**
+ *
+ */
 //VALIDATORS
 
 
@@ -184,8 +214,6 @@ function isEmailvalid () {
 }
 
 
-// NEW CODE
-
 function isActivitiesvalid () {
     if (total>0) {
 
@@ -197,8 +225,6 @@ function isActivitiesvalid () {
     }
 
 }
-
-// END OF NEW CODE
 
 function isCreditCardNumValid () {
     const ccNumIsValid = /^\d{13,16}$/.test(creditCardNumber.value);
@@ -220,15 +246,11 @@ function isCvvValid() {
     else invalid(cvv);
 }
 
-// THIS THIS THIS THIS THIS THIS THIS THIS
-function BLAH(ELEMENT) {
 
-}
-
-
-
+/**
+ *
+ */
 form.addEventListener('keyup', e => {
-        e.preventDefault(); // REMOVE
         isNamevalid();
         isEmailvalid();
         isActivitiesvalid();
@@ -246,7 +268,6 @@ form.addEventListener('change', e => {
 });
 
 form.addEventListener('submit', e => {
-
     isNamevalid();
     isEmailvalid();
     isActivitiesvalid();
@@ -256,17 +277,5 @@ form.addEventListener('submit', e => {
 })
 
 
-
-
-// Will add a focus class to a checkbox that is in focus - CSS properties change drawing attention to element
-
-for (let i =0; i< activitiesCheckboxes.length; i++) {
-    activitiesCheckboxes[i].addEventListener('focus', (e)=>{
-        e.target.parentElement.classList.add("focus")
-    });
-    activitiesCheckboxes[i].addEventListener('blur', (e)=>{
-        e.target.parentElement.classList.remove("focus");
-    });
-}
 
 
