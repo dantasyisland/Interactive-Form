@@ -1,3 +1,10 @@
+/**
+Treehouse Techdegree:
+FSJS Project 3 - Interactive Form
+This following code will validate a registration form for a fictional Full Stack Conference.
+*/
+
+
 const form = document.querySelector('form');
 const registerButton = document.querySelector('button[type="submit"]')
 
@@ -239,5 +246,27 @@ form.addEventListener('change', e => {
 });
 
 form.addEventListener('submit', e => {
-    e.preventDefault();
+
+    isNamevalid();
+    isEmailvalid();
+    isActivitiesvalid();
+    isCreditCardNumValid();
+    isCreditCardZipValid();
+    isCvvValid();
 })
+
+
+
+
+// Will add a focus class to a checkbox that is in focus - CSS properties change drawing attention to element
+
+for (let i =0; i< activitiesCheckboxes.length; i++) {
+    activitiesCheckboxes[i].addEventListener('focus', (e)=>{
+        e.target.parentElement.classList.add("focus")
+    });
+    activitiesCheckboxes[i].addEventListener('blur', (e)=>{
+        e.target.parentElement.classList.remove("focus");
+    });
+}
+
+
