@@ -152,25 +152,25 @@ paymentInfo.addEventListener('change', (e) =>{
 const email = document.getElementById('email'); // input
 
 function valid(element) {
-    element.parentElement.classList.remove('not-valid');
     element.parentElement.classList.add('valid');
     element.parentElement.lastElementChild.style.display = 'none';
+    element.parentElement.classList.remove('not-valid');
 }
 
 function invalid(element) {
-    element.parentElement.classList.remove('valid');
     element.parentElement.classList.add('not-valid');
     element.parentElement.lastElementChild.style.display = 'inline';
+    element.parentElement.classList.remove('valid');
 }
 
 
 
-function isNamevalid (name) {
+function isNamevalid () {
     const nameIsvalid = /^[a-z ,.'-]+$/i.test(name.value);
     if(nameIsvalid === true) valid(name);
     else invalid(name);
 }
-function isEmailvalid (email) {
+function isEmailvalid () {
     const emailIsvalid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
     if(emailIsvalid === true) valid(email);
     else invalid(email);
@@ -179,7 +179,7 @@ function isEmailvalid (email) {
 
 // NEW CODE
 
-function isActivitiesvalid (activities) {
+function isActivitiesvalid () {
     if (total>0) {
 
         valid(activities);
@@ -194,25 +194,41 @@ function isActivitiesvalid (activities) {
 // END OF NEW CODE
 
 function isCreditCardNumValid () {
-// creditCardNumber
+    const ccNumIsValid = /^\d{13,16}$/.test(creditCardNumber.value);
+    if(ccNumIsValid === true) valid(creditCardNumber);
+    else invalid(creditCardNumber);
 }
 
 function isCreditCardZipValid () {
-// creditCardZip
+    const isZipValid = /^\d{5}$/.test(creditCardZip.value);
+    if(isZipValid === true) valid(creditCardZip);
+    else invalid(creditCardZip);
+
+
 }
 
 function isCvvValid() {
-// cvv
+    const isCvvValid = /^\d{3}$/.test(cvv.value);
+    if(isCvvValid === true) valid(cvv);
+    else invalid(cvv);
 }
 
+// THIS THIS THIS THIS THIS THIS THIS THIS
+function BLAH(ELEMENT) {
+
+}
 
 
 
 form.addEventListener('keyup', e => {
         e.preventDefault(); // REMOVE
-        isNamevalid(name);
-        isEmailvalid(email);
-        isActivitiesvalid(activities);
+        isNamevalid();
+        isEmailvalid();
+        isActivitiesvalid();
+        isCreditCardNumValid();
+        isCreditCardZipValid();
+        isCvvValid();
+
 //      if (!emailvalidator())  e.preventDefault();
 //     if (!languagevalidator()) e.preventDefault();
 
