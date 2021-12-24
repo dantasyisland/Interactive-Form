@@ -5,44 +5,40 @@ This following code will validate a registration form for a fictional Full Stack
 */
 
 
-const form = document.querySelector('form');
-const registerButton = document.querySelector('button[type="submit"]')
-
 /**
- *
+ * The following code ensures that the cursor appears in the name field by calling the focus() method.
  */
 
 let name = document.getElementById('name');
 name.focus();
 
 /**
- *
+ * The following ensures that the "Other Job Role" field is hidden and displayed only when selected as an option in the job role select element.
+ * focus() method is also called on the "Other Job Role" text field
  */
-// JOB ROLE
-const jobRole = document.getElementById('title'); // select - 1st option has hidden attribute - last option is Other - options have values
-const otherJobRole = document.getElementById('other-job-role'); // input - other job role
 
-// Displays other job role text input box if other job role is selected
+const jobRole = document.getElementById('title');
+const otherJobRole = document.getElementById('other-job-role');
+
 otherJobRole.style.display = 'none';
 
 jobRole.addEventListener('change', (e) => {
     if (e.target.value === 'other') {
         otherJobRole.style.display = '';
+        otherJobRole.focus();
     } else {
         otherJobRole.style.display = 'none';
     }
-
 });
 
 /**
- *
+ * The following code disables the t-shirt color field. Once a t-shirt design is selected via change event, the anonymous function in the event listener
+ * will check the data-theme for either "js puns" or "heart js" and then enable respective color options to be selected on the form.
  */
-// T SHIRT
-//SHIRTS fieldset
-const tShirtDesign = document.getElementById('design'); // select - options have values
-const tShirtColor = document.getElementById('color'); // select - options have data-theme js puns or heart js
 
-// Disables T-Shirt Color Option
+const tShirtDesign = document.getElementById('design');
+const tShirtColor = document.getElementById('color');
+
 tShirtColor.disabled = true;
 
 tShirtDesign.addEventListener('change', (e) => {
@@ -71,14 +67,14 @@ tShirtDesign.addEventListener('change', (e) => {
 
 
 /**
- *
+ * The following code allows the dislay of the total cost of the user selected activities. In the anonymous function in the event listener, checkboxes are disabled or enabled
+ * based on matching the data-day-and-time attribute against all other options available. If a day and time of a selected activity is
  */
-// ACTIVTIES
 
-let activitiesCost = document.querySelector('#activities-cost'); // paragraph elemment
+let activitiesCost = document.querySelector('#activities-cost');
 let activities = document.querySelector('#activities-box');
-let activitiesCheckboxes = document.querySelectorAll('.activities input'); // node list input type check box
-let total = 0; // outside for validation
+let activitiesCheckboxes = document.querySelectorAll('.activities input');
+let total = 0;
 
 activities.addEventListener('change', (e) =>{
     for (let i=0; i< activitiesCheckboxes.length; i++) {
@@ -106,31 +102,13 @@ activities.addEventListener('change', (e) =>{
 /**
  *
  */
-// PAYMENT
 
 
-// Payment Info
-const paymentOptions = document.querySelectorAll('#payment option'); // values - select method hidden
+const paymentOptions = document.querySelectorAll('#payment option');
 const creditCard = document.querySelector('#credit-card');
-//Credit card has div creditcard
-
-const creditCardInfo = document.querySelectorAll('#credit-card select')
-const expMonth = document.querySelectorAll('#exp-month option'); // values month of year
-const expYear = document.querySelectorAll('#exp-year option'); //
-
-
-// in Num box
-const creditCardNumber = document.querySelector('#cc-num');
-const creditCardZip = document.querySelector('#zip') ///hmmmm
-const cvv = document.querySelector('#cvv')
-
 
 const paypal = document.querySelector('#paypal');
 const bitcoin = document.querySelector('#bitcoin');
-
-
-// nested inside I can hide them other s clean switch
-
 
 paypal.style.display = "none";
 bitcoin.style.display = "none";
@@ -138,13 +116,9 @@ bitcoin.style.display = "none";
 paymentOptions[1].selected = true;
 const paymentInfo = document.querySelector('#payment');
 
-//if option-value for select == classname
-//e.target = select
-// children expect value hidden
+
 paymentInfo.addEventListener('change', (e) =>{
 
-    // let x = document.querySelector(`#${e.target.value}`);
-    // x.style.display = "block";
     for(let i = 0; i< paymentInfo.length; i++) {
         if (paymentInfo[i].selected === true) {
             if (paymentInfo[i].value === 'paypal') {
@@ -181,12 +155,20 @@ for (let i =0; i< activitiesCheckboxes.length; i++) {
 
 
 /**
- *
+ * The following are html elements needed for validator functions
  */
-//VALIDATORS
-
 
 const email = document.getElementById('email'); // input
+
+const creditCardNumber = document.querySelector('#cc-num');
+const creditCardZip = document.querySelector('#zip') ///hmmmm
+const cvv = document.querySelector('#cvv')
+
+
+/**
+ *
+ * @param {*} element
+ */
 
 function valid(element) {
     element.parentElement.classList.add('valid');
@@ -200,7 +182,9 @@ function invalid(element) {
     element.parentElement.classList.remove('valid');
 }
 
-
+/**
+ *
+ */
 
 function isNamevalid () {
     const nameIsvalid = /^[a-z ,.'-]+$/i.test(name.value);
@@ -250,21 +234,28 @@ function isCvvValid() {
 /**
  *
  */
+ const form = document.querySelector('form');
+
+ // MAY NOT NEED THIS
+ const registerButton = document.querySelector('button[type="submit"]')
+
+
+
 form.addEventListener('keyup', e => {
-        isNamevalid();
-        isEmailvalid();
-        isActivitiesvalid();
-        isCreditCardNumValid();
-        isCreditCardZipValid();
-        isCvvValid();
+    isNamevalid();
+    isEmailvalid();
+    isActivitiesvalid();
+    isCreditCardNumValid();
+    isCreditCardZipValid();
+    isCvvValid();
 
 //      if (!emailvalidator())  e.preventDefault();
 //     if (!languagevalidator()) e.preventDefault();
 
-   });
+});
 
 form.addEventListener('change', e => {
-        isActivitiesvalid(activitiesCheckboxes);
+    isActivitiesvalid(activitiesCheckboxes);
 });
 
 form.addEventListener('submit', e => {
@@ -274,7 +265,7 @@ form.addEventListener('submit', e => {
     isCreditCardNumValid();
     isCreditCardZipValid();
     isCvvValid();
-})
+});
 
 
 
