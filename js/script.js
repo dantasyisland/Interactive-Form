@@ -1,7 +1,8 @@
 /**
-Treehouse Techdegree:
-FSJS Project 3 - Interactive Form
-This following code will validate a registration form for a fictional Full Stack Conference.
+* Treehouse Techdegree:
+* FSJS Project 3 - Interactive Form
+* This following code will validate a registration form for a fictional Full Stack Conference.
+* I am shooting for an exceeds expectations grade
 */
 
 
@@ -100,7 +101,8 @@ activities.addEventListener('change', (e) =>{
 
 
 /**
- *
+ * The following code handles payment information. The credit card option and it's respective input fields are the only fields visible. If the "Paypal" or "Bitcoin" option is
+ * selected by the user then credit card information is hidden and the selected option will display. Payment methods will update if a user selects a different option.
  */
 
 
@@ -175,6 +177,11 @@ function valid(element) {
     element.parentElement.lastElementChild.style.display = 'none';
     element.parentElement.classList.remove('not-valid');
 }
+
+/**
+ *
+ * @param {*} element
+ */
 
 function invalid(element) {
     element.parentElement.classList.add('not-valid');
@@ -259,12 +266,13 @@ form.addEventListener('change', e => {
 });
 
 form.addEventListener('submit', e => {
-    isNamevalid();
-    isEmailvalid();
-    isActivitiesvalid();
-    isCreditCardNumValid();
-    isCreditCardZipValid();
-    isCvvValid();
+    if(!isNamevalid() || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() ||!isCvvValid()) e.preventDefault();
+    // isNamevalid();
+    // isEmailvalid();
+    // isActivitiesvalid();
+    // isCreditCardNumValid();
+    // isCreditCardZipValid();
+    // isCvvValid();
 });
 
 
