@@ -154,7 +154,7 @@ for (let i = 0; i < activitiesCheckboxes.length; i++) {
 const email = document.getElementById('email');
 
 const creditCardNumber = document.querySelector('#cc-num');
-const creditCardZip = document.querySelector('#zip'); // / hmmmm
+const creditCardZip = document.querySelector('#zip');
 const cvv = document.querySelector('#cvv');
 
 /**
