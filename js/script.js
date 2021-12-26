@@ -267,17 +267,32 @@ form.addEventListener('change', (e) => {
  * if any do not return true (invalid form input from user)
  */
 
+
+
+
+
 form.addEventListener('submit', (e) => {
 
-    // IF PAYMENT IS BITCOIN OR PAYPAL?
 
-    isNamevalid();
-    isEmailvalid();
-    isActivitiesvalid();
-    isCreditCardNumValid();
-    isCreditCardZipValid();
-    isCvvValid();
-    if (!isNamevalid() || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() || !isCvvValid()) {
-        e.preventDefault();
+    if(paymentInfo.selectedIndex === 1) { // if credit card is selected as payment option
+        isNamevalid();
+        isEmailvalid();
+        isActivitiesvalid();
+        isCreditCardNumValid();
+        isCreditCardZipValid();
+        isCvvValid();
+        if (!isNamevalid() || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() || !isCvvValid()) {
+            e.preventDefault();
+        }
     }
+    if ((paymentInfo.selectedIndex === 2) || (paymentInfo.selectedIndex === 3)){
+            isNamevalid();
+            isEmailvalid();
+            isActivitiesvalid();
+            if (!isNamevalid() || !isEmailvalid() || !isActivitiesvalid()) {
+                console.log('worked');
+                e.preventDefault();
+            }
+            console.log(isEmailvalid());
+        }
 });
