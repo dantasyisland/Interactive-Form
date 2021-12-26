@@ -268,6 +268,15 @@ form.addEventListener('change', (e) => {
  */
 
 form.addEventListener('submit', (e) => {
+
+    // IF PAYMENT IS BITCOIN OR PAYPAL?
+
+    isNamevalid();
+    isEmailvalid();
+    isActivitiesvalid();
+    isCreditCardNumValid();
+    isCreditCardZipValid();
+    isCvvValid();
     if (!isNamevalid() || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() || !isCvvValid()) {
         e.preventDefault();
     }
