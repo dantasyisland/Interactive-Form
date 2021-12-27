@@ -158,39 +158,48 @@ const creditCardZip = document.querySelector('#zip');
 const cvv = document.querySelector('#cvv');
 
 /**
- * Function that is called by validating functions. Allows for the display of CSS properties showing the element is valid.
+ * Function that is called by several validating functions. Allows for the display of CSS properties showing the element is valid.
  * @param {HTMLElement}
  */
+ let invalidNameSpan = document.createElement("span");
 
 function valid(element) {
+
     element.parentElement.classList.add('valid');
     element.parentElement.lastElementChild.style.display = 'none';
     element.parentElement.classList.remove('not-valid');
 }
 
-/**
- * Function that is called by validating functions. Allows for the display of CSS properties showing the element is invalid and what the user must do to pass validation tests.
- * @param {HTMLElement}
- */
-function invalid(element) {
-    element.parentElement.classList.add('not-valid');
-    element.parentElement.lastElementChild.style.display = 'inline';
-    element.parentElement.classList.remove('valid');
-}
 
 /**
  * Validator functions below for the name, email, activities and credit card sections of the form
  * Validators will call valid() function if the element input is valid and invalid() if not.
  * Functions will also return true if valid for the form event handler logic.
  */
-function isNamevalid() {
-    const nameIsvalid = /^[a-z ,.'-]+$/i.test(name.value);
-    if (nameIsvalid === true) {
-        valid(name);
-        return true;
+ function isNameValid() {
+    let nameExp = /^[a-z ,.'-]+$/i;
+    const NameIsValid = nameExp.test(name.value);
+
+    if (!NameIsValid && name.value != '') {
+      name.parentElement.classList.add('not-valid');
+      name.parentElement.lastElementChild.innerText = `That's a very interesting name but we can only accept '.' and '-' as special characters`;
+      name.parentElement.lastElementChild.style.display = 'inline';
+      name.parentElement.classList.remove('valid');
+      return false;
+    } else if (!NameIsValid && name.value == '') {
+      name.parentElement.classList.add('not-valid');
+      name.parentElement.lastElementChild.innerText = 'Sorry - you must enter a name'
+      name.parentElement.lastElementChild.style.display = 'inline';
+      name.parentElement.classList.remove('valid');
+      return false;
+    } else if (NameIsValid) {
+      name.parentElement.classList.add('valid');
+      name.parentElement.lastElementChild.style.display = 'none';
+      name.parentElement.classList.remove('not-valid');
     }
-    invalid(name);
-}
+
+  }
+
 
 function isEmailvalid() {
     const emailIsvalid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
@@ -246,7 +255,7 @@ const form = document.querySelector('form');
  */
 
 form.addEventListener('keyup', (e) => {
-    isNamevalid();
+    isNameValid();
     isEmailvalid();
     isActivitiesvalid();
     isCreditCardNumValid();
@@ -275,21 +284,21 @@ form.addEventListener('submit', (e) => {
 
 
     if(paymentInfo.selectedIndex === 1) { // if credit card is selected as payment option
-        isNamevalid();
+        isNameValid();
         isEmailvalid();
         isActivitiesvalid();
         isCreditCardNumValid();
         isCreditCardZipValid();
         isCvvValid();
-        if (!isNamevalid() || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() || !isCvvValid()) {
+        if (!isNameValid || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() || !isCvvValid()) {
             e.preventDefault();
         }
     }
     if ((paymentInfo.selectedIndex === 2) || (paymentInfo.selectedIndex === 3)){
-            isNamevalid();
+            isNameValid;
             isEmailvalid();
             isActivitiesvalid();
-            if (!isNamevalid() || !isEmailvalid() || !isActivitiesvalid()) {
+            if (!isNameValid || !isEmailvalid() || !isActivitiesvalid()) {
                 console.log('worked');
                 e.preventDefault();
             }
