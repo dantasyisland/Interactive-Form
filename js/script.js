@@ -9,7 +9,7 @@
  * The following code ensures that the cursor appears in the name field by calling the focus() method.
  */
 
-const name = document.getElementById('name');
+const name = document.getElementById("name");
 name.focus();
 
 /**
@@ -17,17 +17,17 @@ name.focus();
  * focus() method is also called on the "Other Job Role" text field
  */
 
-const jobRole = document.getElementById('title');
-const otherJobRole = document.getElementById('other-job-role');
+const jobRole = document.getElementById("title");
+const otherJobRole = document.getElementById("other-job-role");
 
-otherJobRole.style.display = 'none';
+otherJobRole.style.display = "none";
 
-jobRole.addEventListener('change', (e) => {
-    if (e.target.value === 'other') {
-        otherJobRole.style.display = '';
+jobRole.addEventListener("change", (e) => {
+    if (e.target.value === "other") {
+        otherJobRole.style.display = "";
         otherJobRole.focus();
     } else {
-        otherJobRole.style.display = 'none';
+        otherJobRole.style.display = "none";
     }
 });
 
@@ -36,27 +36,27 @@ jobRole.addEventListener('change', (e) => {
  * will check the data-theme for either "js puns" or "heart js" and then enable respective color options to be selected on the form.
  */
 
-const tShirtDesign = document.getElementById('design');
-const tShirtColor = document.getElementById('color');
+const tShirtDesign = document.getElementById("design");
+const tShirtColor = document.getElementById("color");
 
 tShirtColor.disabled = true;
 
-tShirtDesign.addEventListener('change', (e) => {
+tShirtDesign.addEventListener("change", (e) => {
     tShirtColor.disabled = false;
 
-    if (e.target.value === 'js puns') {
+    if (e.target.value === "js puns") {
         for (let i = 0; i < tShirtColor.options.length; i++) {
             tShirtColor.options[i].disabled = false;
-            if (tShirtColor.options[i].dataset.theme !== 'js puns') {
+            if (tShirtColor.options[i].dataset.theme !== "js puns") {
                 tShirtColor.options[i].disabled = true;
                 tShirtColor.options[1].selected = true;
             }
         }
     }
-    if (e.target.value === 'heart js') {
+    if (e.target.value === "heart js") {
         for (let i = 0; i < tShirtColor.options.length; i++) {
             tShirtColor.options[i].disabled = false;
-            if (tShirtColor.options[i].dataset.theme !== 'heart js') {
+            if (tShirtColor.options[i].dataset.theme !== "heart js") {
                 tShirtColor.options[i].disabled = true;
                 tShirtColor.options[4].selected = true;
             }
@@ -71,26 +71,34 @@ tShirtDesign.addEventListener('change', (e) => {
  * same day and time.
  */
 
-const activitiesCost = document.querySelector('#activities-cost');
-const activities = document.querySelector('#activities-box');
-const activitiesCheckboxes = document.querySelectorAll('.activities input');
+const activitiesCost = document.querySelector("#activities-cost");
+const activities = document.querySelector("#activities-box");
+const activitiesCheckboxes = document.querySelectorAll(".activities input");
 let total = 0;
 
-activities.addEventListener('change', (e) => {
+activities.addEventListener("change", (e) => {
     for (let i = 0; i < activitiesCheckboxes.length; i++) {
-        if ((e.target.checked === true) && (e.target.getAttribute('data-day-and-time') === activitiesCheckboxes[i].getAttribute('data-day-and-time'))) {
+        if (
+            e.target.checked === true &&
+            e.target.getAttribute("data-day-and-time") ===
+            activitiesCheckboxes[i].getAttribute("data-day-and-time")
+        ) {
             activitiesCheckboxes[i].disabled = true;
             e.target.disabled = false;
-        } else if ((e.target.checked === false) && (e.target.getAttribute('data-day-and-time') === activitiesCheckboxes[i].getAttribute('data-day-and-time'))) {
+        } else if (
+            e.target.checked === false &&
+            e.target.getAttribute("data-day-and-time") ===
+            activitiesCheckboxes[i].getAttribute("data-day-and-time")
+        ) {
             activitiesCheckboxes[i].disabled = false;
             e.target.disabled = false;
         }
     }
 
     if (e.target.checked === true) {
-        total += parseInt(e.target.getAttribute('data-cost'));
+        total += parseInt(e.target.getAttribute("data-cost"));
     } else if (e.target.checked === false) {
-        total -= parseInt(e.target.getAttribute('data-cost'));
+        total -= parseInt(e.target.getAttribute("data-cost"));
     }
     activitiesCost.innerText = `Total: $${total}`;
 });
@@ -101,33 +109,33 @@ activities.addEventListener('change', (e) => {
  * Payment methods will update if a user selects a different option.
  */
 
-const paymentOptions = document.querySelectorAll('#payment option');
-const creditCard = document.querySelector('#credit-card');
+const paymentOptions = document.querySelectorAll("#payment option");
+const creditCard = document.querySelector("#credit-card");
 
-const paypal = document.querySelector('#paypal');
-const bitcoin = document.querySelector('#bitcoin');
+const paypal = document.querySelector("#paypal");
+const bitcoin = document.querySelector("#bitcoin");
 
-paypal.style.display = 'none';
-bitcoin.style.display = 'none';
+paypal.style.display = "none";
+bitcoin.style.display = "none";
 
 paymentOptions[1].selected = true;
-const paymentInfo = document.querySelector('#payment');
+const paymentInfo = document.querySelector("#payment");
 
-paymentInfo.addEventListener('change', (e) => {
+paymentInfo.addEventListener("change", (e) => {
     for (let i = 0; i < paymentInfo.length; i++) {
         if (paymentInfo[i].selected === true) {
-            if (paymentInfo[i].value === 'paypal') {
-                paypal.style.display = 'block';
-                creditCard.style.display = 'none';
-                bitcoin.style.display = 'none';
-            } else if (paymentInfo[i].value === 'bitcoin') {
-                bitcoin.style.display = 'block';
-                paypal.style.display = 'none';
-                creditCard.style.display = 'none';
-            } else if (paymentInfo[i].value === 'credit-card') {
-                creditCard.style.display = 'block';
-                bitcoin.style.display = 'none';
-                paypal.style.display = 'none';
+            if (paymentInfo[i].value === "paypal") {
+                paypal.style.display = "block";
+                creditCard.style.display = "none";
+                bitcoin.style.display = "none";
+            } else if (paymentInfo[i].value === "bitcoin") {
+                bitcoin.style.display = "block";
+                paypal.style.display = "none";
+                creditCard.style.display = "none";
+            } else if (paymentInfo[i].value === "credit-card") {
+                creditCard.style.display = "block";
+                bitcoin.style.display = "none";
+                paypal.style.display = "none";
             }
         }
     }
@@ -139,11 +147,11 @@ paymentInfo.addEventListener('change', (e) => {
  */
 
 for (let i = 0; i < activitiesCheckboxes.length; i++) {
-    activitiesCheckboxes[i].addEventListener('focus', (e) => {
-        e.target.parentElement.classList.add('focus');
+    activitiesCheckboxes[i].addEventListener("focus", (e) => {
+        e.target.parentElement.classList.add("focus");
     });
-    activitiesCheckboxes[i].addEventListener('blur', (e) => {
-        e.target.parentElement.classList.remove('focus');
+    activitiesCheckboxes[i].addEventListener("blur", (e) => {
+        e.target.parentElement.classList.remove("focus");
     });
 }
 
@@ -151,57 +159,68 @@ for (let i = 0; i < activitiesCheckboxes.length; i++) {
  * The following are html elements needed for form validator functions
  */
 
-const email = document.getElementById('email');
+const email = document.getElementById("email");
 
-const creditCardNumber = document.querySelector('#cc-num');
-const creditCardZip = document.querySelector('#zip');
-const cvv = document.querySelector('#cvv');
+const creditCardNumber = document.querySelector("#cc-num");
+const creditCardZip = document.querySelector("#zip");
+const cvv = document.querySelector("#cvv");
 
 /**
- * Function that is called by several validating functions. Allows for the display of CSS properties showing the element is valid.
+ * Function that is called by validating functions. Allows for the display of CSS properties showing the element is valid.
  * @param {HTMLElement}
  */
- let invalidNameSpan = document.createElement("span");
 
 function valid(element) {
-
-    element.parentElement.classList.add('valid');
-    element.parentElement.lastElementChild.style.display = 'none';
-    element.parentElement.classList.remove('not-valid');
+    element.parentElement.classList.add("valid");
+    element.parentElement.lastElementChild.style.display = "none";
+    element.parentElement.classList.remove("not-valid");
 }
 
+/**
+ * Function that is called by validating functions. Allows for the display of CSS properties showing the element is invalid and what the user must do to pass validation tests. If the name element is invalid then appropriate messages will
+ * display for the text field being left blank or special characters being used
+ * @param {HTMLElement}
+ */
+function invalid(element) {
+    if (element === name) {
+        if (name.value != "") {
+            element.parentElement.classList.add("not-valid");
+            element.parentElement.lastElementChild.innerText = `That's a very interesting name but we can only accept '.' and '-' as special characters. So sorry about that`;
+            element.parentElement.lastElementChild.style.display = "inline";
+            element.parentElement.classList.remove("valid");
+        } else if (name.value == "") {
+            element.parentElement.classList.add("not-valid");
+            element.parentElement.lastElementChild.innerText =
+                "Sorry - you must enter a name";
+            element.parentElement.lastElementChild.style.display = "inline";
+            element.parentElement.classList.remove("valid");
+        }
+    } else {
+        element.parentElement.classList.add("not-valid");
+        element.parentElement.lastElementChild.style.display = "inline";
+        element.parentElement.classList.remove("valid");
+    }
+}
 
 /**
  * Validator functions below for the name, email, activities and credit card sections of the form
  * Validators will call valid() function if the element input is valid and invalid() if not.
  * Functions will also return true if valid for the form event handler logic.
  */
- function isNameValid() {
+function isNameValid() {
     let nameExp = /^[a-z ,.'-]+$/i;
     const NameIsValid = nameExp.test(name.value);
 
-    if (!NameIsValid && name.value != '') {
-      name.parentElement.classList.add('not-valid');
-      name.parentElement.lastElementChild.innerText = `That's a very interesting name but we can only accept '.' and '-' as special characters`;
-      name.parentElement.lastElementChild.style.display = 'inline';
-      name.parentElement.classList.remove('valid');
-      return false;
-    } else if (!NameIsValid && name.value == '') {
-      name.parentElement.classList.add('not-valid');
-      name.parentElement.lastElementChild.innerText = 'Sorry - you must enter a name'
-      name.parentElement.lastElementChild.style.display = 'inline';
-      name.parentElement.classList.remove('valid');
-      return false;
+    if (!NameIsValid) {
+        invalid(name);
+        return false;
     } else if (NameIsValid) {
-      name.parentElement.classList.add('valid');
-      name.parentElement.lastElementChild.style.display = 'none';
-      name.parentElement.classList.remove('not-valid');
+        valid(name);
+        return true;
     }
+}
 
-  }
-
-
-function isEmailvalid() {
+function isEmailValid() {
     const emailIsvalid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
     if (emailIsvalid === true) {
         valid(email);
@@ -210,7 +229,7 @@ function isEmailvalid() {
     invalid(email);
 }
 
-function isActivitiesvalid() {
+function isActivitiesValid() {
     if (total > 0) {
         valid(activities);
         return true;
@@ -248,16 +267,16 @@ function isCvvValid() {
 /**
  * Event listener for form interactivity
  */
-const form = document.querySelector('form');
+const form = document.querySelector("form");
 
 /**
  * 'keyup' event hander for realtime form validation
  */
 
-form.addEventListener('keyup', (e) => {
+form.addEventListener("keyup", (e) => {
     isNameValid();
-    isEmailvalid();
-    isActivitiesvalid();
+    isEmailValid();
+    isActivitiesValid();
     isCreditCardNumValid();
     isCreditCardZipValid();
     isCvvValid();
@@ -267,8 +286,8 @@ form.addEventListener('keyup', (e) => {
  * 'change' event listener for the acitivities section for real time validation
  */
 
-form.addEventListener('change', (e) => {
-    isActivitiesvalid(activitiesCheckboxes);
+form.addEventListener("change", (e) => {
+    isActivitiesValid(activitiesCheckboxes);
 });
 
 /**
@@ -276,32 +295,32 @@ form.addEventListener('change', (e) => {
  * if any do not return true (invalid form input from user)
  */
 
-
-
-
-
-form.addEventListener('submit', (e) => {
-
-
-    if(paymentInfo.selectedIndex === 1) { // if credit card is selected as payment option
+form.addEventListener("submit", (e) => {
+    if (paymentInfo.selectedIndex === 1) {
+        // if credit card is selected as payment option
         isNameValid();
-        isEmailvalid();
-        isActivitiesvalid();
+        isEmailValid();
+        isActivitiesValid();
         isCreditCardNumValid();
         isCreditCardZipValid();
         isCvvValid();
-        if (!isNameValid || !isEmailvalid() || !isActivitiesvalid() || !isCreditCardNumValid() || !isCreditCardZipValid() || !isCvvValid()) {
+        if (
+            !isNameValid ||
+            !isEmailValid() ||
+            !isActivitiesValid() ||
+            !isCreditCardNumValid() ||
+            !isCreditCardZipValid() ||
+            !isCvvValid()
+        ) {
             e.preventDefault();
         }
     }
-    if ((paymentInfo.selectedIndex === 2) || (paymentInfo.selectedIndex === 3)){
-            isNameValid;
-            isEmailvalid();
-            isActivitiesvalid();
-            if (!isNameValid || !isEmailvalid() || !isActivitiesvalid()) {
-                console.log('worked');
-                e.preventDefault();
-            }
-            console.log(isEmailvalid());
+    if (paymentInfo.selectedIndex === 2 || paymentInfo.selectedIndex === 3) {
+        isNameValid();
+        isEmailValid();
+        isActivitiesValid();
+        if (!isNameValid() || !isEmailValid() || !isActivitiesValid()) {
+            e.preventDefault();
         }
+    }
 });
